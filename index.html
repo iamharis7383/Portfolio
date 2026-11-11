@@ -7,133 +7,138 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
-body{background:#05050a;color:#fff;overflow-x:hidden}
-a{text-decoration:none;color:#fff}
-::selection{background:#7c5cff;color:#fff}
-/* VIDEO HERO */
-.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-.hero video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,10,.55),rgba(5,5,10,.85) 70%,#05050a);z-index:1}
-.hero-content{position:relative;z-index:2;padding:20px;animation:fadeUp 1s ease}
-.badge{display:inline-block;padding:8px 16px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:30px;font-size:13px;letter-spacing:1px}
-.badge i{color:#00ff9d;font-style:normal}
-.hero h1{font-size:clamp(38px,7vw,72px);line-height:1.05;font-weight:900;margin:20px 0 10px}
+:root{--bg:#000000;--card:#111118;--border:#24243a;--text:#ffffff;--muted:#a8a8bb;--accent:#7c5cff;--accent2:#00d4ff}
+body.light{--bg:#f4f4f8;--card:#ffffff;--border:#e0e0ea;--text:#111111;--muted:#555566}
+body{background:var(--bg);color:var(--text);overflow-x:hidden;transition:.3s}
+a{text-decoration:none;color:var(--text)}
+.container{max-width:1150px;margin:auto;padding:0 20px}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.7);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+body.light .topbar{background:rgba(255,255,255,.85)}
+.topbar-inner{max-width:1150px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:20px}
+.logo span{color:var(--accent)}
+.topbar-inner nav{display:flex;gap:18px;align-items:center;font-size:14px}
+.topbar-inner nav a{opacity:.85}
+.topbar-inner nav a:hover{color:var(--accent)}
+.theme-btn{background:var(--accent);color:#fff;border:none;padding:8px 14px;border-radius:20px;cursor:pointer;font-weight:600}
+.hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#000}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.85) 75%,#000);z-index:1}
+.hero-content{position:relative;z-index:2;padding:20px;max-width:800px}
+.badge{display:inline-block;padding:8px 16px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);border-radius:30px;font-size:12px;letter-spacing:1px}
+.hero h1{font-size:clamp(38px,7vw,70px);line-height:1.05;font-weight:900;margin:20px 0 10px}
 .gradient{background:linear-gradient(90deg,#7c5cff,#00d4ff,#ff5ca8,#7c5cff);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:grad 5s linear infinite}
 @keyframes grad{to{background-position:300% 0}}
-.typing{font-size:clamp(18px,3vw,28px);font-weight:600;color:#e6e6ff;min-height:38px}
+.typing{font-size:clamp(18px,3vw,26px);font-weight:600;min-height:36px}
 .typing span{color:#00d4ff}
-.cursor{display:inline-block;width:3px;height:26px;background:#00d4ff;vertical-align:middle;animation:blink .8s infinite}
-@keyframes blink{50%{opacity:0}}
-.hero p{color:#c8c8d8;max-width:620px;margin:14px auto 26px;font-size:15px}
-.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn{padding:14px 28px;border-radius:50px;font-weight:700;font-size:14px;transition:.3s}
-.btn-p{background:#7c5cff;box-shadow:0 10px 30px rgba(124,92,255,.5)}
-.btn-p:hover{transform:translateY(-3px) scale(1.03)}
-.btn-g{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px)}
-.scroll-down{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;font-size:12px;letter-spacing:2px;color:#aaa}
+.hero p{color:#d0d0dd;max-width:620px;margin:14px auto 24px;font-size:15px}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:50px;font-weight:700;font-size:14px;display:inline-block}
+.btn-p{background:#7c5cff;color:#fff}
+.btn-g{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff}
+.live{margin-top:16px;font-size:13px;color:#aaa}
+.scroll-down{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:2px;color:#aaa;text-align:center}
 .mouse{width:26px;height:42px;border:2px solid #fff;border-radius:20px;margin:8px auto;position:relative}
-.mouse::after{content:'';width:6px;height:6px;background:#00d4ff;border-radius:50%;position:absolute;left:50%;top:8px;transform:translateX(-50%);animation:mouse 1.5s infinite}
+.mouse::after{content:'';width:6px;height:6px;background:#00d4ff;border-radius:50%;position:absolute;left:50%;top:8px;transform:translateX(-50%);animation:mouse 1.4s infinite}
 @keyframes mouse{0%{opacity:1;top:8px}100%{opacity:0;top:22px}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.container{max-width:1150px;margin:auto;padding:0 20px}
-/* PHOTO FRAME SECTION */
-.profile-section{padding:80px 0 20px;text-align:center}
-.frame-wrap{position:relative;width:300px;height:300px;margin:0 auto}
-.frame-wrap::before{content:'';position:absolute;inset:-14px;border-radius:34px;background:conic-gradient(from 0deg,#7c5cff,#00d4ff,#ff5ca8,#7c5cff);animation:spin 4s linear infinite;z-index:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-.frame-wrap img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:26px;border:5px solid #0a0a12}
-.float-badge{position:absolute;z-index:2;bottom:-12px;left:50%;transform:translateX(-50%);background:#11111f;border:1px solid #333;padding:8px 16px;border-radius:30px;font-size:13px;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.6)}
-.big-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(48px,9vw,92px);font-weight:900;letter-spacing:2px;margin:34px 0 6px;line-height:1}
-.big-name span{background:linear-gradient(90deg,#fff,#7c5cff,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.role{font-size:clamp(18px,3vw,26px);font-weight:600;color:#00d4ff;letter-spacing:1px}
-.location{color:#aaa;margin-top:10px;font-size:14px}
-/* SECTIONS */
-section{padding:60px 0}
+section{padding:65px 0}
 h2{font-size:clamp(28px,4vw,38px);text-align:center}
-.sec-sub{text-align:center;color:#aaa;margin:10px auto 36px;max-width:650px}
+.sec-sub{text-align:center;color:var(--muted);margin:10px auto 30px;max-width:680px}
+.profile-section{padding:100px 0 10px;text-align:center}
+.frame-wrap{position:relative;width:300px;height:300px;margin:0 auto}
+.frame-wrap::before{content:'';position:absolute;inset:-12px;border-radius:32px;background:conic-gradient(from 0deg,#7c5cff,#00d4ff,#ff5ca8,#7c5cff);animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.frame-wrap img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;border-radius:24px;border:5px solid #000;background:#111}
+.float-badge{position:absolute;z-index:2;bottom:-14px;left:50%;transform:translateX(-50%);background:#11111f;color:#fff;border:1px solid #333;padding:8px 14px;border-radius:30px;font-size:12px;white-space:nowrap}
+.big-name{font-family:'Space Grotesk',sans-serif;font-size:clamp(46px,9vw,90px);font-weight:900;margin:34px 0 4px;line-height:1}
+.big-name span{color:var(--accent)}
+.role{font-size:clamp(17px,3vw,24px);font-weight:600;color:#00d4ff}
+.location{color:var(--muted);margin-top:10px;font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.card{background:linear-gradient(145deg,#12121e,#0e0e18);border:1px solid #23233a;padding:26px;border-radius:20px;transition:.3s;opacity:0;transform:translateY(30px)}
-.card.show{opacity:1;transform:translateY(0)}
-.card:hover{transform:translateY(-6px);border-color:#7c5cff}
-.card .icon{font-size:30px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--border);padding:26px;border-radius:20px;transition:.3s}
+.card:hover{transform:translateY(-6px);border-color:var(--accent)}
 .card h3{margin-bottom:8px}
-.card p{color:#aaa;font-size:14px}
+.card p{color:var(--muted);font-size:14px}
 .tag{display:inline-block;background:#1e1e35;color:#c9c9ff;padding:4px 10px;border-radius:20px;font-size:12px;margin:5px 5px 0 0}
+body.light .tag{background:#e9e9ff;color:#333}
+.search-box{display:block;width:100%;max-width:420px;margin:0 auto 22px;padding:13px 16px;border-radius:30px;border:1px solid var(--border);background:var(--card);color:var(--text);outline:none}
 .skills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.skill{background:#13131f;border:1px solid #2a2a44;padding:11px 18px;border-radius:30px;font-size:14px}
-.skill b{color:#00d4ff}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;text-align:center;margin-top:10px}
-.stat{background:#12121e;border:1px solid #23233a;padding:22px;border-radius:18px}
-.stat b{font-size:30px;color:#7c5cff;display:block}
-.stat span{color:#aaa;font-size:13px}
-/* CONTACT */
-.contact-box{background:linear-gradient(135deg,#7c5cff,#00d4ff);padding:40px 22px;border-radius:26px;text-align:center;color:#fff}
-.contact-box h2{color:#fff}
-.contact-box p{opacity:.9;margin:10px 0 22px}
-.contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.contact-btns a{background:#fff;color:#111;padding:14px 22px;border-radius:50px;font-weight:700;font-size:14px}
-.contact-btns a.dark{background:#111;color:#fff}
-footer{text-align:center;padding:28px;color:#777;font-size:13px;border-top:1px solid #1c1c2e}
-.top-btn{position:fixed;bottom:20px;right:20px;background:#7c5cff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:99;box-shadow:0 10px 25px rgba(0,0,0,.5)}
+.skill{background:var(--card);border:1px solid var(--border);padding:11px 18px;border-radius:30px;font-size:14px}
+.filter-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.filter-btns button{padding:10px 18px;border-radius:30px;border:1px solid var(--border);background:var(--card);color:var(--text);cursor:pointer}
+.filter-btns button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;text-align:center}
+.stat{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:18px}
+.stat b{font-size:30px;color:var(--accent);display:block}
+.stat span{color:var(--muted);font-size:13px}
+.about-text{max-width:760px;margin:auto;text-align:center;color:var(--muted);line-height:1.8}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:750px){.contact-grid{grid-template-columns:1fr}.topbar-inner nav a.hide-m{display:none}}
+.contact-card{background:var(--card);border:1px solid var(--border);padding:28px;border-radius:20px}
+.contact-card h3{margin-bottom:16px}
+.contact-card p{color:var(--muted);margin-bottom:10px;font-size:15px}
+.contact-card p b{color:var(--text)}
+input,textarea{width:100%;padding:13px 14px;margin-bottom:12px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--text);outline:none}
+.send-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer}
+.send-btn:hover{opacity:.9}
+.cta{background:linear-gradient(135deg,#7c5cff,#00d4ff);padding:38px 22px;border-radius:24px;text-align:center;color:#fff;margin-top:20px}
+.cta h2{color:#fff}
+.cta p{opacity:.9;margin:10px 0 20px}
+.cta a{background:#fff;color:#111;padding:13px 22px;border-radius:50px;font-weight:700;display:inline-block;margin:4px}
+footer{text-align:center;padding:28px;color:#777;font-size:13px;border-top:1px solid var(--border)}
+.top-btn{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:99;border:none;cursor:pointer}
 </style>
 </head>
 <body>
 
-<!-- HERO WITH VIDEO -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">Haris<span>.dev</span></div>
+    <nav>
+      <a class="hide-m" href="#profile">Profile</a>
+      <a class="hide-m" href="#services">Services</a>
+      <a class="hide-m" href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" onclick="toggleTheme()">Light / Dark</button>
+    </nav>
+  </div>
+</div>
+
 <header class="hero">
   <video autoplay muted loop playsinline>
     <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-connections-28059-large.mp4" type="video/mp4">
   </video>
   <div class="hero-content">
-    <div class="badge"><i>●</i> AVAILABLE FOR NEW PROJECTS</div>
-    <h1>HELLO, I'M<br><span class="gradient">FRONTEND DEVELOPER</span></h1>
-    <div class="typing">I Build <span id="typed"></span><span class="cursor"></span></div>
-    <p>7+ Years of Experience in building fast, beautiful and modern websites. From Chakwal, Pakistan — working for clients all over the world.</p>
+    <div class="badge">AVAILABLE FOR NEW PROJECTS</div>
+    <h1>HELLO, I AM<br><span class="gradient">FRONTEND DEVELOPER</span></h1>
+    <div class="typing">I Build <span id="typed"></span></div>
+    <p>7+ Years of Experience in building fast, beautiful and modern websites. From Pichnand, Chakwal, Pakistan - working for clients all over the world.</p>
     <div class="btns">
-      <a class="btn btn-p" href="#profile">View My Portfolio ↓</a>
+      <a class="btn btn-p" href="#profile">View My Portfolio</a>
       <a class="btn btn-g" href="https://wa.me/923174345949" target="_blank">WhatsApp Me</a>
     </div>
+    <div class="live" id="liveTime">Loading time...</div>
   </div>
   <div class="scroll-down">SCROLL DOWN<div class="mouse"></div></div>
 </header>
 
 <div class="container">
-  <!-- PHOTO IN FRAME -->
+
   <div class="profile-section" id="profile">
     <div class="frame-wrap">
-      <img src="cat.jpg" alt="Haris Awan">
-      <div class="float-badge">⭐ 7 Years Experience • 💼 50+ Projects</div>
+      <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&auto=format&fit=crop&q=80" alt="Haris Awan Profile Photo" onerror="this.src='https://cdn.pixabay.com/photo/2017/02/20/18/03/cat-2083492_1280.jpg'">
+      <div class="float-badge">7 Years Experience | 50+ Projects</div>
     </div>
     <div class="big-name">HARIS <span>AWAN</span></div>
     <div class="role">WEBSITE DEVELOPER | FRONTEND DEVELOPER</div>
-    <div class="location"> Pichnand, Pakistan | 🌍 Working Worldwide | 💻 Freelancer</div>
+    <div class="location">Pichnand, Chakwal, Pakistan | Working Worldwide | Freelancer</div>
   </div>
 
-  <!-- WHAT I DO IN FRONTEND -->
   <section>
-    <h2>What I Do In Frontend Development</h2>
-    <p class="sec-sub">Frontend mein jo jo hota hai, sab kuch main professionally karta hoon:</p>
-    <div class="grid">
-      <div class="card"><div class="icon"></div><h3>Website Design to Code</h3><p>Figma, Adobe XD, Photoshop design ko pixel-perfect HTML / CSS / React code mein convert karna.</p><span class="tag">Figma to Code</span><span class="tag">PSD to HTML</span></div>
-      <div class="card"><div class="icon"></div><h3>Responsive Design</h3><p>Website ko Mobile, Tablet, Laptop sab par perfect dikhana. Mobile-first approach.</p><span class="tag">Mobile First</span><span class="tag">Media Queries</span></div>
-      <div class="card"><div class="icon"></div><h3>Fast & SEO Friendly</h3><p>Website ko super fast load karwana, Google SEO, Core Web Vitals optimize karna.</p><span class="tag">SEO</span><span class="tag">Speed</span></div>
-      <div class="card"><div class="icon"></div><h3>E-Commerce Websites</h3><p>Online stores, cart, checkout, payment integration, product pages.</p><span class="tag">Shopify</span><span class="tag">WooCommerce</span></div>
-      <div class="card"><div class="icon"></div><h3>React / Next.js Apps</h3><p>Modern web apps, dashboards, admin panels, APIs ke saath dynamic websites.</p><span class="tag">React</span><span class="tag">Next.js</span></div>
-      <div class="card"><div class="icon"></div><h3>Animations & UI / UX</h3><p>Smooth animations, hover effects, sliders, modals, beautiful user experience.</p><span class="tag">Animations</span><span class="tag">UI/UX</span></div>
-      <div class="card"><div class="icon"></div><h3>Business & Portfolio Websites</h3><p>Company websites, landing pages, portfolios, blogs, school / hospital / shop websites.</p><span class="tag">Landing Page</span><span class="tag">Portfolio</span></div>
-      <div class="card"><div class="icon"></div><h3>AI Websites</h3><p>AI tools ke saath websites, Chatbots, AI content, AI image tools integration.</p><span class="tag">AI Integration</span><span class="tag">Chatbot</span></div>
-      <div class="card"><div class="icon"></div><h3>Website Fix & Redesign</h3><p>Purani website ko naya look dena, bugs fix karna, speed aur design improve karna.</p><span class="tag">Redesign</span><span class="tag">Bug Fix</span></div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section>
-    <h2>My Skills</h2>
-    <p class="sec-sub">Technologies I use every day</p>
-    <div class="skills">
-      <div class="skill"><b>HTML5</b></div><div class="skill"><b>CSS3</b></div><div class="skill"><b>JavaScript</b></div><div class="skill"><b>TypeScript</b></div><div class="skill"><b>React.js</b></div><div class="skill"><b>Next.js</b></div><div class="skill"><b>Tailwind CSS</b></div><div class="skill"><b>Bootstrap</b></div><div class="skill"><b>WordPress</b></div><div class="skill"><b>Git & GitHub</b></div><div class="skill"><b>Figma</b></div><div class="skill"><b>AI Tools</b></div>
-    </div>
-    <div class="stats">
+    <h2>About Me</h2>
+    <p class="sec-sub">Frontend Developer who loves clean code and clean design.</p>
+    <p class="about-text">I am Haris Awan, a Frontend Developer from Pichnand, Chakwal with 7 years of experience. I specialize in turning ideas into pixel-perfect, responsive websites that load fast and feel great to use. Now I am also building AI-powered websites to work even faster and smarter.</p>
+    <div class="stats" style="margin-top:28px">
       <div class="stat"><b>7+</b><span>Years Experience</span></div>
       <div class="stat"><b>50+</b><span>Projects Completed</span></div>
       <div class="stat"><b>40+</b><span>Happy Clients</span></div>
@@ -141,37 +146,92 @@ footer{text-align:center;padding:28px;color:#777;font-size:13px;border-top:1px s
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section>
-    <h2>Featured Projects</h2>
-    <p class="sec-sub">My best work so far</p>
+  <section id="services">
+    <h2>What I Do In Frontend Development</h2>
+    <p class="sec-sub">Everything that comes under Frontend Development, I do it professionally:</p>
     <div class="grid">
-      <div class="card"><div class="icon">🛍️</div><h3>E-Commerce Store</h3><p>Full online shop with cart, checkout and payment. Mobile friendly and super fast.</p><span class="tag">React</span><span class="tag">E-Commerce</span></div>
-      <div class="card"><div class="icon">🏢</div><h3>Business Website</h3><p>Modern business website for Pakistani client. Leads 3x increase after launch.</p><span class="tag">Next.js</span><span class="tag">SEO</span></div>
-      <div class="card"><div class="icon">🤖</div><h3>AI Portfolio Generator</h3><p>My new project — AI se portfolio website banane wala tool. Coming soon.</p><span class="tag">AI</span><span class="tag">No-Code</span></div>
+      <div class="card"><h3>1. Website Design to Code</h3><p>Convert Figma, Adobe XD, Photoshop design into pixel-perfect HTML, CSS and React code.</p><span class="tag">Figma to Code</span><span class="tag">PSD to HTML</span></div>
+      <div class="card"><h3>2. Responsive Design</h3><p>Make websites perfect on Mobile, Tablet and Laptop. Mobile-first approach for best user experience.</p><span class="tag">Mobile First</span><span class="tag">Responsive</span></div>
+      <div class="card"><h3>3. Fast and SEO Friendly</h3><p>Super fast loading websites, Google SEO, Core Web Vitals and performance optimization.</p><span class="tag">SEO</span><span class="tag">Speed</span></div>
+      <div class="card"><h3>4. E-Commerce Websites</h3><p>Online stores with cart, checkout, payment integration and product pages.</p><span class="tag">Shopify</span><span class="tag">WooCommerce</span></div>
+      <div class="card"><h3>5. React and Next.js Apps</h3><p>Modern web apps, dashboards, admin panels and dynamic websites connected with APIs.</p><span class="tag">React</span><span class="tag">Next.js</span></div>
+      <div class="card"><h3>6. Animations and UI / UX</h3><p>Smooth animations, hover effects, sliders, modals and beautiful user experience design.</p><span class="tag">Animations</span><span class="tag">UI / UX</span></div>
+      <div class="card"><h3>7. Business and Portfolio Websites</h3><p>Company websites, landing pages, portfolios, blogs, school, hospital and shop websites.</p><span class="tag">Landing Page</span><span class="tag">Portfolio</span></div>
+      <div class="card"><h3>8. AI Websites</h3><p>Websites with AI tools, chatbots, AI content and AI image tools integration.</p><span class="tag">AI Integration</span><span class="tag">Chatbot</span></div>
+      <div class="card"><h3>9. Website Fix and Redesign</h3><p>Give old websites a new look, fix bugs, improve speed and design.</p><span class="tag">Redesign</span><span class="tag">Bug Fix</span></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section>
-    <div class="contact-box">
-      <h2>Let's Work Together</h2>
-      <p>Apko website chahiye? Mujhse contact karein. Main 24 hours mein reply karta hoon.</p>
-      <div class="contact-btns">
-        <a href="tel:+923174345949">📞 Call: 0317 4345949</a>
-        <a href="https://wa.me/923174345949" target="_blank">💬 WhatsApp</a>
-        <a class="dark" href="mailto:awanplays6282@gmail.com">✉️ awanplays6282@gmail.com</a>
-      </div>
-      <p style="margin-top:20px;font-size:13px">📍 Chakwal, Pakistan • Available Worldwide • Freelance / Full-Time</p>
+    <h2>My Skills</h2>
+    <p class="sec-sub">Search my skills below</p>
+    <input class="search-box" id="skillSearch" placeholder="Search skills... Example: React, HTML, CSS" onkeyup="filterSkills()">
+    <div class="skills" id="skillsList">
+      <div class="skill">HTML5</div><div class="skill">CSS3</div><div class="skill">JavaScript</div><div class="skill">TypeScript</div><div class="skill">React.js</div><div class="skill">Next.js</div><div class="skill">Tailwind CSS</div><div class="skill">Bootstrap</div><div class="skill">WordPress</div><div class="skill">Git and GitHub</div><div class="skill">Figma</div><div class="skill">AI Tools</div>
     </div>
   </section>
+
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <p class="sec-sub">Filter my work by category</p>
+    <div class="filter-btns">
+      <button class="active" onclick="filterProjects('all',this)">All</button>
+      <button onclick="filterProjects('ecommerce',this)">E-Commerce</button>
+      <button onclick="filterProjects('business',this)">Business</button>
+      <button onclick="filterProjects('ai',this)">AI</button>
+    </div>
+    <div class="grid" id="projectGrid">
+      <div class="card" data-cat="ecommerce"><h3>E-Commerce Store</h3><p>Full online shop with cart, checkout and payment. Mobile friendly and super fast.</p><span class="tag">React</span><span class="tag">E-Commerce</span></div>
+      <div class="card" data-cat="business"><h3>Business Website</h3><p>Modern business website for Pakistani client. Leads increased 3x after launch.</p><span class="tag">Next.js</span><span class="tag">SEO</span></div>
+      <div class="card" data-cat="ai"><h3>AI Portfolio Generator</h3><p>My new project. AI builds a portfolio website from just your skills. Coming soon.</p><span class="tag">AI</span><span class="tag">No-Code</span></div>
+      <div class="card" data-cat="business"><h3>School Management Website</h3><p>Website for school with admission form, results and notice board.</p><span class="tag">Business</span><span class="tag">Web App</span></div>
+      <div class="card" data-cat="ecommerce"><h3>Clothing Brand Store</h3><p>Online clothing store with product filters and WhatsApp order system.</p><span class="tag">E-Commerce</span><span class="tag">WhatsApp</span></div>
+      <div class="card" data-cat="ai"><h3>AI Chatbot Website</h3><p>Website with AI chatbot that answers customer questions automatically.</p><span class="tag">AI</span><span class="tag">Chatbot</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p class="sec-sub">Have a project in mind? Contact me directly.</p>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>My Contact Details</h3>
+        <p><b>Name:</b> Haris Awan</p>
+        <p><b>Location:</b> Pichnand, Chakwal, Pakistan</p>
+        <p><b>Phone / WhatsApp:</b> 0317 4345949</p>
+        <p><b>Email:</b> awanplays6282@gmail.com</p>
+        <p><b>Experience:</b> 7 Years Frontend Developer</p>
+        <p><b>Availability:</b> Available for Freelance and Full-Time</p>
+        <br>
+        <a class="btn btn-p" href="https://wa.me/923174345949" target="_blank">Open WhatsApp</a>
+        <a class="btn btn-g" style="background:#eee;color:#111;border:none;margin-left:8px" href="mailto:awanplays6282@gmail.com">Send Email</a>
+      </div>
+      <div class="contact-card">
+        <h3>Send Me a Message</h3>
+        <form onsubmit="return sendMessage(event)">
+          <input id="cName" placeholder="Your Name" required>
+          <input id="cPhone" placeholder="Your Phone / WhatsApp" required>
+          <input id="cMsg" placeholder="Your Project Details - Example: I need a business website" required>
+          <button class="send-btn" type="submit">Send on WhatsApp</button>
+          <p id="formMsg" style="margin-top:10px;font-size:13px;color:#00d4ff"></p>
+        </form>
+      </div>
+    </div>
+    <div class="cta">
+      <h2>Let's Work Together</h2>
+      <p>Do you need a website? I will reply within 24 hours.</p>
+      <a href="tel:+923174345949">Call: 0317 4345949</a>
+      <a href="mailto:awanplays6282@gmail.com">Email Me</a>
+    </div>
+  </section>
+
 </div>
 
-<footer>© 2026 Haris Awan — Frontend Developer & Website Developer | Made with ❤️ in Chakwal, Pakistan</footer>
-<a class="top-btn" href="#">↑</a>
+<footer>Copyright 2026 Haris Awan - Frontend Developer and Website Developer | From Pichnand, Chakwal, Pakistan</footer>
+<button class="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">Up</button>
 
 <script>
-// Typing Animation
+function toggleTheme(){ document.body.classList.toggle('light'); }
 const words = ["Modern Websites.", "E-Commerce Stores.", "React Web Apps.", "Landing Pages.", "AI Websites.", "Business Websites."];
 let wi=0, ci=0, deleting=false;
 const el=document.getElementById('typed');
@@ -182,11 +242,34 @@ function type(){
   setTimeout(type, deleting?40:80);
 }
 type();
-// Scroll Reveal
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
-},{threshold:0.1});
-document.querySelectorAll('.card').forEach(c=>observer.observe(c));
+function filterSkills(){
+  let q=document.getElementById('skillSearch').value.toLowerCase();
+  document.querySelectorAll('#skillsList .skill').forEach(s=>{
+    s.style.display = s.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+  });
+}
+function filterProjects(cat, btn){
+  document.querySelectorAll('.filter-btns button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#projectGrid .card').forEach(c=>{
+    c.style.display = (cat==='all' || c.dataset.cat===cat) ? 'block' : 'none';
+  });
+}
+function sendMessage(e){
+  e.preventDefault();
+  let name=document.getElementById('cName').value;
+  let phone=document.getElementById('cPhone').value;
+  let msg=document.getElementById('cMsg').value;
+  let text="Hello Haris, My name is "+name+". My number is "+phone+". Project: "+msg;
+  window.open("https://wa.me/923174345949?text="+encodeURIComponent(text), "_blank");
+  document.getElementById('formMsg').textContent="Opening WhatsApp... Thank you "+name;
+  return false;
+}
+function updateTime(){
+  let now=new Date();
+  document.getElementById('liveTime').textContent="Local Time in Pichnand, Chakwal: "+now.toLocaleTimeString()+" | "+now.toLocaleDateString();
+}
+setInterval(updateTime,1000); updateTime();
 </script>
 </body>
 </html>
